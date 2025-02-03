@@ -14,6 +14,14 @@ public abstract class EnemyBase : MonoBehaviour
         EnemyHealth.OnDeathEvent += OnDeath;
     }
 
+    private void Update()
+    {
+        if (EnemyMovement != null)
+        {
+            EnemyMovement.MoveTowards();
+        }
+    }
+
     public virtual void TakeDamage(int damage, DamageType damageType)
     {
         EnemyHealth.TakeDamage(damage, damageType);
@@ -21,7 +29,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void MoveTowards(Vector3 destination)
     {
-        EnemyMovement.MoveTowards(destination);
+        EnemyMovement.MoveTowards();
     }
 
     private void OnDestroy()

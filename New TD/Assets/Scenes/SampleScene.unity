@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 170457893}
   - component: {fileID: 170457892}
   m_Layer: 0
-  m_Name: Waypoints2
+  m_Name: Route2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1438,7 +1438,7 @@ GameObject:
   - component: {fileID: 429815631}
   - component: {fileID: 429815630}
   m_Layer: 0
-  m_Name: Waypoints1
+  m_Name: Route1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

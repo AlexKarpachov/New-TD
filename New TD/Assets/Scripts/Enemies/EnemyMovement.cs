@@ -13,12 +13,13 @@ public class EnemyMovement : IEnemyMovement
         _speed = speed;
         _waypoints = waypoints;
     }
-    public void MoveTowards(Vector3 destination)
+    public void MoveTowards()
     {
-        if (_currentWaypointIndex >= _waypoints.Length) return;
+        if (_waypoints.Length == 0 || _currentWaypointIndex >= _waypoints.Length) return;
 
         Transform targetWaypoint = _waypoints[_currentWaypointIndex];
         Vector3 direction = (targetWaypoint.position - _transform.position).normalized;
+
         _transform.position += direction * _speed * Time.deltaTime;
 
         if (Vector3.Distance(_transform.position, targetWaypoint.position) < 0.1f)

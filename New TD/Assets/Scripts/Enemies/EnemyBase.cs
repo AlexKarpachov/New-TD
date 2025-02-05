@@ -40,6 +40,6 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void OnDeath()
     {
         EnemyHealth.OnDeath();
-        Destroy(gameObject);
+        ObjectPoolManager.Instance.ReturnObject(gameObject, "enemy1"); 
     }
 }

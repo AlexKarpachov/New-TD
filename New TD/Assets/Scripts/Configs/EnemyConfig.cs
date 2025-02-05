@@ -12,4 +12,5 @@ public class EnemyConfig : ScriptableObject
     public int goldReward;
     public int scoreReward;
     public int livesDamage;
+    public Waypoints route;
 }

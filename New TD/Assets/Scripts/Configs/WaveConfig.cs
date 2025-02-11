@@ -4,8 +4,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWaveConfig", menuName = "Configs/WaveConfig")]
 public class WaveConfig : ScriptableObject
 {
-    public List<EnemyConfig> enemyTypes; // Типи ворогів у хвилі.
-    public List<int> enemyCounts; // Кількість кожного типу ворогів.
-    public float spawnDelay; // Затримка між спавнами.
-    public PathConfig path; // Шлях, яким рухаються вороги.
+    public float spawnDelay = 1f; // Delay between spawns
+
+    [System.Serializable]
+    public class EnemyWave
+    {
+        public string enemyPrefab;
+        public EnemyConfig config; 
+        public int count; // Number of enemies
+        public bool spawnFromSecondPoint; // If true, spawn from point 2
+    }
+
+    public List<EnemyWave> enemies;
 }

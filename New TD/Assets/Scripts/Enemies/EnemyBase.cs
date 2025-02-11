@@ -25,6 +25,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         // Subscribe to the death event of the health component
         EnemyHealth.OnDeathEvent += OnDeath;
+        EnemyMovement.OnReachDestination += OnReachedEnd;
     }
 
     // Move the enemy if movement component exists
@@ -42,10 +43,19 @@ public abstract class EnemyBase : MonoBehaviour
         EnemyHealth.TakeDamage(damage, damageType);
     }
 
+    private void OnReachedEnd()
+    {
+        Debug.Log($"{gameObject.name} reached the end! Returning to pool.");
+        ObjectPool.Instance.ReturnObject(gameObject, Config.enemyName); 
+    }
+
     private void OnDestroy()
     {
-        // Unsubscribe from the death event to prevent memory leaks
-        EnemyHealth.OnDeathEvent -= OnDeath;
+        if (EnemyHealth != null)
+        {
+            EnemyHealth.OnDeathEvent -= OnDeath; // Unsubscribe from the death event to prevent memory leaks
+        }
+        EnemyMovement.OnReachDestination -= OnReachedEnd;
     }
 
     // Called when the enemy dies. Handles object removal.

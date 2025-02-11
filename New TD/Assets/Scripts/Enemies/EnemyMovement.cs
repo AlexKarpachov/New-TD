@@ -1,12 +1,15 @@
+using System;
 using UnityEngine;
 
 // Handles enemy movement along a predefined path.
 public class EnemyMovement : IEnemyMovement
 {
-    private Transform _transform; // Enemy's transform reference
-    private float _speed;
-    private Transform[] _waypoints; // List of waypoints for the enemy to follow
-    private int _currentWaypointIndex = 0; // Tracks the current waypoint the enemy is moving toward
+    Transform _transform; // Enemy's transform reference
+    Transform[] _waypoints; // List of waypoints for the enemy to follow
+    float _speed;
+    int _currentWaypointIndex = 0; // Tracks the current waypoint the enemy is moving toward
+
+    public event Action OnReachDestination;
 
     public EnemyMovement(Transform transform, float speed, Transform[] waypoints)
     {
@@ -18,7 +21,13 @@ public class EnemyMovement : IEnemyMovement
     // Moves the enemy towards the next waypoint in the path.
     public void MoveTowards()
     {
-        if (_waypoints.Length == 0 || _currentWaypointIndex >= _waypoints.Length) return;
+        if (_waypoints.Length == 0 || _currentWaypointIndex >= _waypoints.Length)
+        {
+            {
+                OnReachDestination?.Invoke(); 
+                return;
+            }
+        }
 
         // Get the target waypoint
         Transform targetWaypoint = _waypoints[_currentWaypointIndex];
@@ -31,6 +40,11 @@ public class EnemyMovement : IEnemyMovement
         if (Vector3.Distance(_transform.position, targetWaypoint.position) < 0.1f)
         {
             _currentWaypointIndex++;
+
+            if (_currentWaypointIndex >= _waypoints.Length)
+            {
+                OnReachDestination?.Invoke(); 
+            }
         }
     }
 }

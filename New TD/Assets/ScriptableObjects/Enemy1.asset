@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6455fbf103f774690ad78020f353b1, type: 3}
   m_Name: Enemy1
   m_EditorClassIdentifier: 
-  enemyName: enemy1
+  enemyName: Enemy1
   health: 100
   armor: 50
   mechanicalResistance: 50

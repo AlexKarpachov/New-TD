@@ -45,8 +45,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnReachedEnd()
     {
-        Debug.Log($"{gameObject.name} reached the end! Returning to pool.");
-        ObjectPool.Instance.ReturnObject(gameObject, Config.enemyName); 
+        ObjectPool.Instance.ReturnObject(gameObject, Config.enemyName);
     }
 
     private void OnDestroy()
@@ -55,7 +54,8 @@ public abstract class EnemyBase : MonoBehaviour
         {
             EnemyHealth.OnDeathEvent -= OnDeath; // Unsubscribe from the death event to prevent memory leaks
         }
-        EnemyMovement.OnReachDestination -= OnReachedEnd;
+
+        if (EnemyMovement != null) { EnemyMovement.OnReachDestination -= OnReachedEnd; }
     }
 
     // Called when the enemy dies. Handles object removal.

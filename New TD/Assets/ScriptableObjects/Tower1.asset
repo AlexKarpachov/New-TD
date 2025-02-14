@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ebe05a723c4124ba0f0b384c246258, type: 3}
   m_Name: Tower1
   m_EditorClassIdentifier: 
-  towerName: tower1
-  purchaseCost: 20
-  sellValue: 10
-  upgradeCost: 15
-  range: 10
+  towerName: Tower1
+  purchaseCost: 10
+  sellValue: 5
+  upgradeCost: 20
+  range: 15
   fireRate: 1
   projectilePrefab: {fileID: 0}
   canDealCriticalDamage: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 6093449113109778536, guid: 6ac34d34d8c85ab4188ab43d4998d4a0, type: 3}
+  nextUpgrade: {fileID: 11400000, guid: 3815054117834ca4cabd7bcba84627a4, type: 2}

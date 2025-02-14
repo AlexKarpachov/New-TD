@@ -7,7 +7,7 @@ public class ObjectPool : MonoBehaviour
     [System.Serializable]
     public class Pool
     {
-        public string poolTag;
+        public string prefabTag;
         public GameObject prefab;
         public int poolSize;
     }
@@ -39,7 +39,7 @@ public class ObjectPool : MonoBehaviour
                 objectPool.Enqueue(obj);
             }
 
-            poolDictionary.Add(pool.poolTag, objectPool);
+            poolDictionary.Add(pool.prefabTag, objectPool);
         }
     }
 

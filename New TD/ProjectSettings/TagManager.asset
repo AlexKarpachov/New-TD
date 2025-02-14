@@ -7,6 +7,9 @@ TagManager:
   - Route1
   - Route2
   - Enemy1
+  - Enemy2
+  - Tower1
+  - Tower2
   layers:
   - Default
   - TransparentFX

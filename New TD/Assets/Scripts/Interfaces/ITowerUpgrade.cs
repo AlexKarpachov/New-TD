@@ -1,4 +1,6 @@
+using UnityEngine;
+
 public interface ITowerUpgrade
 {
-    void Upgrade();
+    void Upgrade(GameObject currentTower);
 }

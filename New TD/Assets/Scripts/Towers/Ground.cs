@@ -30,7 +30,6 @@ public class Ground : MonoBehaviour
             {
                 CurrencyManager.Instance.SpendMoney(selectedTower.purchaseCost);
                 tower = Instantiate(selectedTower.prefab, transform.position + positionOffset, Quaternion.identity);
-                Debug.Log($"Built {selectedTower.towerName} for {selectedTower.purchaseCost} coins!");
             }
             else
             {

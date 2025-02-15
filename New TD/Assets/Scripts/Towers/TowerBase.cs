@@ -1,52 +1,34 @@
 using UnityEngine;
 
-public abstract class TowerBase : MonoBehaviour, ITowerAttack, ITowerUpgrade, ITowerSell
+/// <summary>
+/// Base class for all towers. Manages attack, upgrade, and sell.
+/// </summary>
+public class TowerBase : MonoBehaviour
 {
-    [SerializeField] protected TowerConfig config;
-    protected Transform target;
-    protected float attackCooldown;
+    [SerializeField] private TowerConfig config;
+    private ITowerAttack attackSystem;
+    private ITowerUpgrade upgradeSystem;
+    private ITowerSell sellSystem;
 
-    private void Update()
+    private void Start()
     {
-        if (target != null)
-        {
-            attackCooldown -= Time.deltaTime;
-            if (attackCooldown <= 0f)
-            {
-                Attack();
-                attackCooldown = config.fireRate;
-            }
-        }
+        attackSystem = new TowerAttack(config);
+        upgradeSystem = new TowerUpgradeSell(config);
+        sellSystem = new TowerUpgradeSell(config);
     }
 
-    public virtual void Attack()
+    public void Attack(Transform enemy)
     {
-        Debug.Log($"{gameObject.name} is attacking {target.name}!");
+        attackSystem.Attack(enemy);
     }
 
-    public virtual void Upgrade()
+    public void Upgrade()
     {
-        if (config.nextUpgrade == null)
-        {
-            Debug.Log("No further upgrades available!");
-            return;
-        }
-
-        // Отримуємо позицію та кут старої вежі
-        Vector3 position = transform.position;
-        Quaternion rotation = transform.rotation;
-
-        // Видаляємо поточну вежу
-        Destroy(gameObject);
-
-        // Створюємо нову вежу на тому ж місці
-        GameObject newTower = Instantiate(config.nextUpgrade.prefab, position, rotation);
-        Debug.Log($"{gameObject.name} upgraded to {config.nextUpgrade.towerName}!");
+        upgradeSystem.Upgrade(gameObject);
     }
 
-    public virtual void Sell()
+    public void Sell()
     {
-        Debug.Log($"{gameObject.name} sold for {config.sellValue} coins!");
-        Destroy(gameObject);
+        sellSystem.Sell(gameObject);
     }
 }

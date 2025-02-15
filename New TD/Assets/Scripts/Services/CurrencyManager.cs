@@ -1,10 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI balanceText;
     public static CurrencyManager Instance;
 
-    private int money = 100; // Початковий баланс
+    private int money = 100; 
 
     private void Awake()
     {
@@ -12,6 +14,10 @@ public class CurrencyManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+    private void Start()
+    {
+        balanceText.text = "Money $ " + money.ToString();
     }
 
     public bool CanAfford(int cost)
@@ -24,7 +30,7 @@ public class CurrencyManager : MonoBehaviour
         if (CanAfford(amount))
         {
             money -= amount;
-            Debug.Log($"Spent {amount} coins. Remaining: {money}");
+            balanceText.text = ("Money $" + money);
         }
     }
 

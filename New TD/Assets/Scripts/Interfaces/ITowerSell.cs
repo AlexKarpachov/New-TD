@@ -1,4 +1,6 @@
+using UnityEngine;
+
 public interface ITowerSell
 {
-    void Sell(); 
+    void Sell(GameObject currentTower); 
 }

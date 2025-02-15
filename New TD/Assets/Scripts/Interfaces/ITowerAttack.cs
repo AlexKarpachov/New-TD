@@ -1,4 +1,6 @@
+using UnityEngine;
+
 public interface ITowerAttack
 {
-    void Attack();
+    void Attack(Transform enemy);
 }

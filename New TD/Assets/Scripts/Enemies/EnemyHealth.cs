@@ -7,23 +7,49 @@ using UnityEngine;
 public class EnemyHealth : IEnemyHealth
 {
     private int _health;
-    private int _armor;
+    private int _mechanicalResistance;
+    private int _magicalResistance;
 
     public event Action OnDeathEvent; // Event triggered when enemy dies
 
-    public EnemyHealth(int health, int armor)
+    public EnemyHealth(int health, int mechanicalResistance, int magicalResistance)
     {
         _health = health;
-        _armor = armor;
+        _mechanicalResistance = mechanicalResistance;
+        _magicalResistance = magicalResistance;
     }
 
     // Applies damage to the enemy, considering armor reduction.
     public void TakeDamage(int damage, DamageType damageType)
     {
-        // Reduce damage based on armor, ensuring it doesn't go below zero
-        int adjustedDamage = Mathf.Max(0, damage - _armor);
-        _health -= adjustedDamage;
-        Debug.Log($"Enemy took {adjustedDamage} damage. Remaining health: {_health}");
+        Debug.Log($"TakeDamage() CALLED with Damage: {damage}, Type: {damageType}");
+        int remainingDamage = damage;
+
+        if (damageType == DamageType.Mechanical)
+        {
+            if (_mechanicalResistance > 0)
+            {
+                int reduction = Mathf.Min(_mechanicalResistance, damage);
+                _mechanicalResistance -= reduction;
+                remainingDamage -= reduction;
+            }
+        }
+        else if (damageType == DamageType.Magical)
+        {
+            if (_magicalResistance > 0)
+            {
+                int reduction = Mathf.Min(_magicalResistance, damage);
+                _magicalResistance -= reduction;
+                remainingDamage -= reduction;
+            }
+        }
+
+        if (remainingDamage > 0)
+        {
+            _health -= remainingDamage;
+        }
+
+        Debug.Log($"Enemy took {damage} damage. Remaining Health: {_health}, MechRes: {_mechanicalResistance}, MagicRes: {_magicalResistance}");
 
         if (_health <= 0)
         {

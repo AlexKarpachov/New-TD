@@ -9,15 +9,33 @@ public class TowerBase : MonoBehaviour
     private ITowerAttack attackSystem;
     private ITowerUpgrade upgradeSystem;
     private ITowerSell sellSystem;
+    private TowerTargeting targetingSystem;
+
+    private float checkInterval = 0.5f;
+    private float lastCheckTime = 0f;
 
     private void Start()
     {
-        attackSystem = new TowerAttack(config);
+        targetingSystem = new TowerTargeting(config, transform);
+        attackSystem = new TowerAttack(config, transform);
         upgradeSystem = new TowerUpgradeSell(config);
         sellSystem = new TowerUpgradeSell(config);
     }
 
-    public void Attack(Transform enemy)
+    private void Update()
+    {
+        if (Time.time >= lastCheckTime + checkInterval)
+        {
+            lastCheckTime = Time.time;
+            Transform nearestEnemy = targetingSystem.FindNearestEnemy();
+            if (nearestEnemy != null)
+            {
+                attackSystem.Attack(nearestEnemy);
+            }
+        }
+    }
+
+    public virtual void Attack(Transform enemy)
     {
         attackSystem.Attack(enemy);
     }

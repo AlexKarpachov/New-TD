@@ -24,12 +24,14 @@ public class Ground : MonoBehaviour
         }
 
         TowerConfig selectedTower = BuildManager.Instance.GetSelectedTower();
+        
         if (selectedTower != null)
         {
             if (CurrencyManager.Instance.CanAfford(selectedTower.purchaseCost))
             {
                 CurrencyManager.Instance.SpendMoney(selectedTower.purchaseCost);
                 tower = Instantiate(selectedTower.prefab, transform.position + positionOffset, Quaternion.identity);
+                BuildManager.Instance.ClearSelection();
             }
             else
             {

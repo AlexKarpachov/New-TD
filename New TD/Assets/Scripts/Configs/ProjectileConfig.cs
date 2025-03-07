@@ -6,7 +6,6 @@ public class ProjectileConfig : ScriptableObject
     public string projectileName;
     public float speed;
     public int damage;
-    public bool isCritical;
-    public DamageType damageType; // Наприклад, механічний або магічний.
+    public DamageType damageType; // Mechanical or Magical.
     public GameObject visualEffectPrefab;
 }

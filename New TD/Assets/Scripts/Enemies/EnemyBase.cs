@@ -9,8 +9,8 @@ public abstract class EnemyBase : MonoBehaviour
     // These fields store references to enemy components that handle health and movement.
     // Using interfaces allows flexibility, making it easy to swap different implementations
     // without modifying this class.
-    protected IEnemyHealth EnemyHealth;
-    protected IEnemyMovement EnemyMovement;
+    public IEnemyHealth EnemyHealth;
+    public IEnemyMovement EnemyMovement;
 
     public EnemyConfig Config; // Enemy configuration settings
 
@@ -20,7 +20,7 @@ public abstract class EnemyBase : MonoBehaviour
     public void Initialize(EnemyConfig config, Transform transform, Transform[] waypoints)
     {
         Config = config;
-        EnemyHealth = new EnemyHealth(config.health, config.armor);
+        EnemyHealth = new EnemyHealth(config.health, config.mechanicalResistance, config.magicalResistance);
         EnemyMovement = new EnemyMovement(transform, config.speed, waypoints);
 
         // Subscribe to the death event of the health component
@@ -34,6 +34,22 @@ public abstract class EnemyBase : MonoBehaviour
         if (EnemyMovement != null)
         {
             EnemyMovement.MoveTowards();
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (EnemyManager.Instance != null)
+        {
+            EnemyManager.Instance.RegisterEnemy(transform);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (EnemyManager.Instance != null)
+        {
+            EnemyManager.Instance.UnregisterEnemy(transform);
         }
     }
 

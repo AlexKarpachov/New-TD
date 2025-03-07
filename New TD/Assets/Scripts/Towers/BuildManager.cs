@@ -25,4 +25,9 @@ public class BuildManager : MonoBehaviour
     {
         return towerToBuild;
     }
+
+    public void ClearSelection()
+    {
+        towerToBuild = null;
+    }
 }

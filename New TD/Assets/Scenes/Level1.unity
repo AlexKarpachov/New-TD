@@ -4557,11 +4557,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - {fileID: 11400000, guid: 2a548e30b5784364a8ed8676d359d60b, type: 2}
+  - {fileID: 11400000, guid: 2a548e30b5784364a8ed8676d359d60b, type: 2}
   spawnPoint1: {fileID: 681359978}
   spawnPoint2: {fileID: 1725306248}
   route1: {fileID: 429815630}
   route2: {fileID: 170457892}
-  timeBetweenWaves: 3
+  timeBetweenWaves: 10
   waveToActivateSecondSpawn: 3
 --- !u!4 &1721387132
 Transform:

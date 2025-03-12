@@ -37,6 +37,6 @@ public class CurrencyManager : MonoBehaviour
     public void EarnMoney(int amount)
     {
         money += amount;
-        Debug.Log($"Earned {amount} coins. Total: {money}");
+        balanceText.text = ("Money $" + money);
     }
 }

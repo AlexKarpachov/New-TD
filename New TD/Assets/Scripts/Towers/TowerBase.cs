@@ -7,8 +7,7 @@ public class TowerBase : MonoBehaviour
 {
     [SerializeField] private TowerConfig config;
     private ITowerAttack attackSystem;
-    private ITowerUpgrade upgradeSystem;
-    private ITowerSell sellSystem;
+    private TowerUpgradeSell upgradeSellSystem;
     private TowerTargeting targetingSystem;
 
     private float checkInterval = 0.5f;
@@ -18,8 +17,7 @@ public class TowerBase : MonoBehaviour
     {
         targetingSystem = new TowerTargeting(config, transform);
         attackSystem = new TowerAttack(config, transform);
-        upgradeSystem = new TowerUpgradeSell(config);
-        sellSystem = new TowerUpgradeSell(config);
+        upgradeSellSystem = new TowerUpgradeSell(config);
     }
 
     private void Update()
@@ -42,11 +40,11 @@ public class TowerBase : MonoBehaviour
 
     public void Upgrade()
     {
-        upgradeSystem.Upgrade(gameObject);
+        upgradeSellSystem.Upgrade(gameObject);
     }
 
     public void Sell()
     {
-        sellSystem.Sell(gameObject);
+        upgradeSellSystem.Sell(gameObject);
     }
 }

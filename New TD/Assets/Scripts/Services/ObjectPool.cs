@@ -52,19 +52,23 @@ public class ObjectPool : MonoBehaviour
             return null;
         }
 
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        Queue<GameObject> objectPool = poolDictionary[tag];
 
-        if (objectToSpawn == null)
+        GameObject objectToSpawn;
+
+        if (objectPool.Count == 0)
         {
-            Debug.LogError($"Object from pool {tag} is NULL!");
-            return null;
+            objectToSpawn = Instantiate(pools.Find(p => p.prefabTag == tag).prefab);
+        }
+        else
+        {
+            objectToSpawn = objectPool.Dequeue();
         }
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
-        poolDictionary[tag].Enqueue(objectToSpawn);
         return objectToSpawn;
     }
 
@@ -73,7 +77,6 @@ public class ObjectPool : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(tag))
         {
-            Debug.LogWarning($"Trying to return object with unknown tag: {tag}");
             return;
         }
 

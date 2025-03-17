@@ -19,6 +19,8 @@ public abstract class EnemyBase : MonoBehaviour
     /// </summary>
     public void Initialize(EnemyConfig config, Transform transform, Transform[] waypoints)
     {
+        Debug.Log($"Enemy {gameObject.name} assigned to route with {waypoints.Length} waypoints");
+
         Config = config;
         EnemyHealth = new EnemyHealth(config.health, config.mechanicalResistance, config.magicalResistance);
         EnemyMovement = new EnemyMovement(transform, config.speed, waypoints);

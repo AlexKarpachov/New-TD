@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ public class WaveManager : MonoBehaviour, IWaveManager
 {
     public static WaveManager Instance;
 
-    [SerializeField] List<WaveConfig> waves; // List of wave configurations
+    [SerializeField] List<WaveConfig> waves; 
     [SerializeField] Transform spawnPoint1;
     [SerializeField] Transform spawnPoint2;
     [SerializeField] Waypoints route1;
@@ -78,6 +78,7 @@ public class WaveManager : MonoBehaviour, IWaveManager
                 return;
             }
 
+            Debug.Log($"Spawning {enemyTag} at {(useSecondSpawnPoint ? "Spawn Point 2" : "Spawn Point 1")}, Route: {(useSecondSpawnPoint ? "Route 2" : "Route 1")}");
             enemyObj.GetComponent<EnemyBase>().Initialize(config, enemyObj.transform, waypoints.points);
         }
     }

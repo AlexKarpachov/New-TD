@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Base class for all enemy types.
@@ -13,14 +13,18 @@ public abstract class EnemyBase : MonoBehaviour
     public IEnemyMovement EnemyMovement;
 
     public EnemyConfig Config; // Enemy configuration settings
+    private bool isInitialized = false;
 
     /// <summary>
     /// Initializes the enemy with config data, movement component, and waypoints.
     /// </summary>
     public void Initialize(EnemyConfig config, Transform transform, Transform[] waypoints)
     {
-        Debug.Log($"Enemy {gameObject.name} assigned to route with {waypoints.Length} waypoints");
-
+        if (isInitialized)
+        {
+            return;
+        }
+        isInitialized = true;
         Config = config;
         EnemyHealth = new EnemyHealth(config.health, config.mechanicalResistance, config.magicalResistance);
         EnemyMovement = new EnemyMovement(transform, config.speed, waypoints);
@@ -49,6 +53,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnDisable()
     {
+        isInitialized = false;
         if (EnemyManager.Instance != null)
         {
             EnemyManager.Instance.UnregisterEnemy(transform);

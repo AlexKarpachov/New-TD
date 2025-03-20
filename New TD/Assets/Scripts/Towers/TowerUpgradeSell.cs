@@ -16,7 +16,6 @@ public class TowerUpgradeSell : ITowerUpgrade, ITowerSell
     {
         if (config.nextUpgrade == null)
         {
-            Debug.Log("Max level reached!");
             return;
         }
 
@@ -39,6 +38,5 @@ public class TowerUpgradeSell : ITowerUpgrade, ITowerSell
     {
         CurrencyManager.Instance.EarnMoney(config.sellValue);
         Object.Destroy(currentTower);
-        Debug.Log($"Sold {currentTower.name} for {config.sellValue} coins.");
     }
 }

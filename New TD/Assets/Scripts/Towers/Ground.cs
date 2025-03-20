@@ -3,6 +3,7 @@ using UnityEngine;
 public class Ground : MonoBehaviour
 {
     [SerializeField] Color hoverColor;
+    [SerializeField] Color invisibleColor = new Color(0, 0, 0, 0);
     [SerializeField] Vector3 positionOffset;
 
     private Renderer rend;
@@ -13,6 +14,7 @@ public class Ground : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
+        HideGround();
     }
 
     private void OnMouseDown()
@@ -32,6 +34,8 @@ public class Ground : MonoBehaviour
                 CurrencyManager.Instance.SpendMoney(selectedTower.purchaseCost);
                 tower = Instantiate(selectedTower.prefab, transform.position + positionOffset, Quaternion.identity);
                 BuildManager.Instance.ClearSelection();
+
+                GroundManager.Instance.HideAllGrounds();
             }
             else
             {
@@ -40,13 +44,13 @@ public class Ground : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
+    public void ShowGround()
     {
         rend.material.color = hoverColor;
     }
 
-    private void OnMouseExit()
+    public void HideGround()
     {
-        rend.material.color = startColor;
+        rend.material.color = invisibleColor;
     }
 }

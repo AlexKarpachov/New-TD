@@ -19,6 +19,7 @@ public class TowerAttack : ITowerAttack
     {
         if (enemy == null) return;
 
+        // 1f / 1 = 1 shot per second; 1f / 2 = 2 shots per second; 1f / 0.5 = 1 shot per 2 seconds
         if (Time.time >= lastAttackTime + 1f / config.fireRate)
         {
             lastAttackTime = Time.time;

@@ -19,6 +19,7 @@ public class BuildManager : MonoBehaviour
     public void SelectTowerToBuild(TowerConfig towerConfig)
     {
         towerToBuild = towerConfig;
+        GroundManager.Instance.ShowAllGrounds();
     }
 
     public TowerConfig GetSelectedTower()

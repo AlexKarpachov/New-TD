@@ -22,7 +22,6 @@ public class EnemyHealth : IEnemyHealth
     // Applies damage to the enemy, considering armor reduction.
     public void TakeDamage(int damage, DamageType damageType)
     {
-        Debug.Log($"TakeDamage() CALLED with Damage: {damage}, Type: {damageType}");
         int remainingDamage = damage;
 
         if (damageType == DamageType.Mechanical)
@@ -49,8 +48,6 @@ public class EnemyHealth : IEnemyHealth
             _health -= remainingDamage;
         }
 
-        Debug.Log($"Enemy took {damage} damage. Remaining Health: {_health}, MechRes: {_mechanicalResistance}, MagicRes: {_magicalResistance}");
-
         if (_health <= 0)
         {
             OnDeath();
@@ -65,7 +62,6 @@ public class EnemyHealth : IEnemyHealth
 
     public void OnDeath()
     {
-        Debug.Log("Enemy has died!");
         OnDeathEvent?.Invoke(); // Notify subscribers (e.g., EnemyBase)
     }
 }

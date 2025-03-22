@@ -20,6 +20,13 @@ public class Projectile : MonoBehaviour
             return;
         }
 
+        Vector3 direction = (target.position - transform.position).normalized;
+        if (direction != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 20f);
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, target.position, config.speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, target.position) < 0.1f)
@@ -38,8 +45,6 @@ public class Projectile : MonoBehaviour
             if (enemyHealth != null)
             {
                 int damage = isCriticalHit ? Mathf.RoundToInt(config.damage * 1.5f) : config.damage;
-                Debug.Log($"Dealing {damage} damage to {enemy.name}!");
-
                 enemyHealth.TakeDamage(damage, config.damageType);
             }
         }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arrow
   m_EditorClassIdentifier: 
   projectileName: Arrow
-  speed: 5
+  speed: 15
   damage: 20
   damageType: 0
   visualEffectPrefab: {fileID: 0}

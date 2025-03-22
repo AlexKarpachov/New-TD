@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42ebe05a723c4124ba0f0b384c246258, type: 3}
-  m_Name: MageLvl1
+  m_Name: ArtilleryLvl3
   m_EditorClassIdentifier: 
-  towerName: MageLvl1
-  purchaseCost: 20
-  sellValue: 10
-  upgradeCost: 20
-  range: 4
-  fireRate: 1
-  projectilePrefab: {fileID: 7000895335238822365, guid: 4211aedd3a07b7b44b473ec3ff5a8ef4,
-    type: 3}
+  towerName: ArtilleryLvl3
+  purchaseCost: 0
+  sellValue: 40
+  upgradeCost: 0
+  range: 7
+  fireRate: 0.5
+  projectilePrefab: {fileID: 0}
   canDealCriticalDamage: 1
-  prefab: {fileID: 2669454776453937978, guid: 06d9b39aeac44114e855ec86e0f22b01, type: 3}
-  nextUpgrade: {fileID: 11400000, guid: fb09e9cea23f8e749ac462790b8ac6aa, type: 2}
+  prefab: {fileID: 2330822617957800304, guid: 26dd60572604f3240bf07be8897242c3, type: 3}
+  nextUpgrade: {fileID: 0}

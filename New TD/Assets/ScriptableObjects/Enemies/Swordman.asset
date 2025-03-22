@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Swordman
   health: 100
-  mechanicalResistance: 100
-  magicalResistance: 50
+  mechanicalResistance: 0
+  magicalResistance: 100
   speed: 2
   goldReward: 15
   scoreReward: 1
-  livesDamage: 1
+  livesDamage: 5

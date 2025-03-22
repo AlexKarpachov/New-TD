@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42ebe05a723c4124ba0f0b384c246258, type: 3}
-  m_Name: ArcherLvl1
+  m_Name: ArtilleryLvl1
   m_EditorClassIdentifier: 
-  towerName: ArcherLvl1
-  purchaseCost: 5
-  sellValue: 2
-  upgradeCost: 10
-  range: 6
-  fireRate: 1
-  projectilePrefab: {fileID: 1903723856673233829, guid: 57f6a8f586e04214cb20a185658a0d03,
-    type: 3}
+  towerName: ArtilleryLvl1
+  purchaseCost: 50
+  sellValue: 25
+  upgradeCost: 50
+  range: 5
+  fireRate: 0.5
+  projectilePrefab: {fileID: 0}
   canDealCriticalDamage: 0
-  prefab: {fileID: 6549423212491823037, guid: 95a915280a61247478fcdffcd35e0b57, type: 3}
-  nextUpgrade: {fileID: 11400000, guid: 3815054117834ca4cabd7bcba84627a4, type: 2}
+  prefab: {fileID: 18354017846634306, guid: 9aee4a7e84e9e404b8aca62b14f2bae6, type: 3}
+  nextUpgrade: {fileID: 11400000, guid: 9a5bee9350ab71f4cb3353ca02fee811, type: 2}

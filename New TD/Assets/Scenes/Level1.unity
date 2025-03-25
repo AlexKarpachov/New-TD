@@ -7988,6 +7988,7 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 2a548e30b5784364a8ed8676d359d60b, type: 2}
   - {fileID: 11400000, guid: d2195be83b4113a408184d8c4b69e93e, type: 2}
+  - {fileID: 11400000, guid: d549b02267163402dbafb144e8aa33d8, type: 2}
   spawnPoint1: {fileID: 681359978}
   spawnPoint2: {fileID: 1725306248}
   route1: {fileID: 429815630}

@@ -6,7 +6,7 @@
 /// </summary>
 public abstract class EnemyBase : MonoBehaviour
 {
-    [SerializeField] private GameObject healthBarPrefab;
+   // [SerializeField] private GameObject healthBarPrefab;
     // These fields store references to enemy components that handle health and movement.
     // Using interfaces allows flexibility, making it easy to swap different implementations
     // without modifying this class.
@@ -28,11 +28,11 @@ public abstract class EnemyBase : MonoBehaviour
             return;
         }
 
-        GameObject barObj = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform);
+       /* GameObject barObj = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform);
         healthBarInstance = barObj.GetComponent<HealthBar>();
         healthBarInstance.Initialize(transform, new Vector3(0, 2.5f, 0)); // змістити над головою
 
-        UpdateHealthBar();
+        UpdateHealthBar();*/
 
         isInitialized = true;
         Config = config;

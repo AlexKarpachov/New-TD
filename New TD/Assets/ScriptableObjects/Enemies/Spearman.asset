@@ -16,7 +16,7 @@ MonoBehaviour:
   health: 100
   mechanicalResistance: 50
   magicalResistance: 0
-  speed: 5
+  speed: 3
   goldReward: 5
   scoreReward: 1
   livesDamage: 1

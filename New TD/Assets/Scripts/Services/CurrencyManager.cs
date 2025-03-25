@@ -4,9 +4,9 @@ using UnityEngine;
 public class CurrencyManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI balanceText;
+    [SerializeField] int money = 100; 
     public static CurrencyManager Instance;
 
-    private int money = 100; 
 
     private void Awake()
     {

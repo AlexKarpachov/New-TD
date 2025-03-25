@@ -6,62 +6,52 @@ using UnityEngine;
 /// </summary>
 public class EnemyHealth : IEnemyHealth
 {
-    private int _health;
+    public event Action OnDeathEvent;
+
+    public int Current { get; private set; }
+    public int Max { get; private set; }
+
     private int _mechanicalResistance;
     private int _magicalResistance;
 
-    public event Action OnDeathEvent; // Event triggered when enemy dies
-
     public EnemyHealth(int health, int mechanicalResistance, int magicalResistance)
     {
-        _health = health;
+        Max = health;
+        Current = health;
         _mechanicalResistance = mechanicalResistance;
         _magicalResistance = magicalResistance;
     }
 
-    // Applies damage to the enemy, considering armor reduction.
     public void TakeDamage(int damage, DamageType damageType)
     {
         int remainingDamage = damage;
 
-        if (damageType == DamageType.Mechanical)
+        if (damageType == DamageType.Mechanical && _mechanicalResistance > 0)
         {
-            if (_mechanicalResistance > 0)
-            {
-                int reduction = Mathf.Min(_mechanicalResistance, damage);
-                _mechanicalResistance -= reduction;
-                remainingDamage -= reduction;
-            }
+            int reduction = Mathf.Min(_mechanicalResistance, damage);
+            _mechanicalResistance -= reduction;
+            remainingDamage -= reduction;
         }
-        else if (damageType == DamageType.Magical)
+        else if (damageType == DamageType.Magical && _magicalResistance > 0)
         {
-            if (_magicalResistance > 0)
-            {
-                int reduction = Mathf.Min(_magicalResistance, damage);
-                _magicalResistance -= reduction;
-                remainingDamage -= reduction;
-            }
+            int reduction = Mathf.Min(_magicalResistance, damage);
+            _magicalResistance -= reduction;
+            remainingDamage -= reduction;
         }
 
         if (remainingDamage > 0)
         {
-            _health -= remainingDamage;
+            Current -= remainingDamage;
         }
 
-        if (_health <= 0)
+        if (Current <= 0)
         {
             OnDeath();
         }
     }
 
-    // Returns the enemy's current health
-    public int GetHealth()
+    private void OnDeath()
     {
-        return _health;
-    }
-
-    public void OnDeath()
-    {
-        OnDeathEvent?.Invoke(); // Notify subscribers (e.g., EnemyBase)
+        OnDeathEvent?.Invoke();
     }
 }

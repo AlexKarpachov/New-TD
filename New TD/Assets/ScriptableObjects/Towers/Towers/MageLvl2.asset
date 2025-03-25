@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ebe05a723c4124ba0f0b384c246258, type: 3}
+  m_Name: MageLvl2
+  m_EditorClassIdentifier: 
+  towerName: MageLvl2
+  purchaseCost: 0
+  sellValue: 15
+  upgradeCost: 0
+  range: 5
+  fireRate: 1
+  projectilePrefab: {fileID: 3466667296402939022, guid: 53bf342eec7fced40a8f23fe03e2e462,
+    type: 3}
+  canDealCriticalDamage: 1
+  prefab: {fileID: 9061807892221282062, guid: f6b0305f34a019647b376be02c52d1b4, type: 3}
+  nextUpgrade: {fileID: 0}

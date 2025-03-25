@@ -32,8 +32,8 @@ public class TowerAttack : ITowerAttack
         GameObject projectile = ObjectPool.Instance.GetObject(config.projectilePrefab.name, towerTransform.position, Quaternion.identity);
         if (projectile != null)
         {
-            Projectile projectileScript = projectile.GetComponent<Projectile>();
-            projectileScript.Initialize(target, config.canDealCriticalDamage, config.projectilePrefab.GetComponent<Projectile>().config);
+            ProjectileBase projectileScript = projectile.GetComponent<ProjectileBase>();
+            projectileScript.Initialize(target, config.canDealCriticalDamage, config.projectilePrefab.GetComponent<ProjectileBase>().config);
         }
     }
 }

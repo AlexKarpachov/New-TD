@@ -7,6 +7,7 @@ public class EnemyMovement : IEnemyMovement
     Transform _transform; // Enemy's transform reference
     Transform[] _waypoints; // List of waypoints for the enemy to follow
     float _speed;
+    private bool isStopped = false;
     float rotationSpeed = 3f;
     int _currentWaypointIndex = 0; // Tracks the current waypoint the enemy is moving toward
 
@@ -19,13 +20,20 @@ public class EnemyMovement : IEnemyMovement
         _waypoints = waypoints;
     }
 
+    public void Stop()
+    {
+        isStopped = true;
+    }
+
     // Moves the enemy towards the next waypoint in the path.
     public void MoveTowards()
     {
+        if (isStopped) return;
+
         if (_waypoints.Length == 0 || _currentWaypointIndex >= _waypoints.Length)
         {
             {
-                OnReachDestination?.Invoke(); 
+                OnReachDestination?.Invoke();
                 return;
             }
         }
@@ -51,7 +59,8 @@ public class EnemyMovement : IEnemyMovement
 
             if (_currentWaypointIndex >= _waypoints.Length)
             {
-                OnReachDestination?.Invoke(); 
+                _speed = 0f;
+                OnReachDestination?.Invoke();
             }
         }
     }

@@ -6,14 +6,17 @@
 /// </summary>
 public abstract class EnemyBase : MonoBehaviour
 {
+    [SerializeField] private GameObject healthBarPrefab;
     // These fields store references to enemy components that handle health and movement.
     // Using interfaces allows flexibility, making it easy to swap different implementations
     // without modifying this class.
     public IEnemyHealth EnemyHealth;
     public IEnemyMovement EnemyMovement;
+    public IEnemyAttack EnemyAttack;
 
     public EnemyConfig Config; // Enemy configuration settings
     private bool isInitialized = false;
+    private HealthBar healthBarInstance;
 
     /// <summary>
     /// Initializes the enemy with config data, movement component, and waypoints.
@@ -24,10 +27,20 @@ public abstract class EnemyBase : MonoBehaviour
         {
             return;
         }
+
+        GameObject barObj = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform);
+        healthBarInstance = barObj.GetComponent<HealthBar>();
+        healthBarInstance.Initialize(transform, new Vector3(0, 2.5f, 0)); // змістити над головою
+
+        UpdateHealthBar();
+
         isInitialized = true;
         Config = config;
         EnemyHealth = new EnemyHealth(config.health, config.mechanicalResistance, config.magicalResistance);
         EnemyMovement = new EnemyMovement(transform, config.speed, waypoints);
+
+        EnemyAttack = GetComponent<EnemyAttack>();
+        EnemyAttack?.Initialize(config, transform);
 
         // Subscribe to the death event of the health component
         EnemyHealth.OnDeathEvent += OnDeath;
@@ -37,10 +50,8 @@ public abstract class EnemyBase : MonoBehaviour
     // Move the enemy if movement component exists
     private void Update()
     {
-        if (EnemyMovement != null)
-        {
-            EnemyMovement.MoveTowards();
-        }
+        EnemyMovement?.MoveTowards();
+        EnemyAttack?.Update();
     }
 
     private void OnEnable()
@@ -64,11 +75,20 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void TakeDamage(int damage, DamageType damageType)
     {
         EnemyHealth.TakeDamage(damage, damageType);
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBarInstance != null)
+        {
+            healthBarInstance.UpdateHealth(EnemyHealth.Current, EnemyHealth.Max);
+        }
     }
 
     private void OnReachedEnd()
     {
-        ObjectPool.Instance.ReturnObject(gameObject, Config.enemyName);
+        // Enemy reached the castle — now stands and attacks, no pooling
     }
 
     private void OnDestroy()

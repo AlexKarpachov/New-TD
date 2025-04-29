@@ -16,7 +16,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public EnemyConfig Config; // Enemy configuration settings
     private bool isInitialized = false;
-    private HealthBar healthBarInstance;
+    private EnemyStatusBar statusBarInstance;
 
     /// <summary>
     /// Initializes the enemy with config data, movement component, and waypoints.
@@ -28,12 +28,6 @@ public abstract class EnemyBase : MonoBehaviour
             return;
         }
 
-       /* GameObject barObj = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform);
-        healthBarInstance = barObj.GetComponent<HealthBar>();
-        healthBarInstance.Initialize(transform, new Vector3(0, 2.5f, 0)); // змістити над головою
-
-        UpdateHealthBar();*/
-
         isInitialized = true;
         Config = config;
         EnemyHealth = new EnemyHealth(config.health, config.mechanicalResistance, config.magicalResistance);
@@ -41,6 +35,14 @@ public abstract class EnemyBase : MonoBehaviour
 
         EnemyAttack = GetComponent<EnemyAttack>();
         EnemyAttack?.Initialize(config, transform);
+
+        statusBarInstance = GetComponentInChildren<EnemyStatusBar>();
+        if (statusBarInstance != null)
+        {
+            statusBarInstance.Initialize(transform, statusBarInstance.Offset);
+            statusBarInstance.UpdateHealth(EnemyHealth.Current, EnemyHealth.Max);
+            statusBarInstance.UpdateArmor(EnemyHealth.TotalArmor, EnemyHealth.MaxArmor);
+        }
 
         // Subscribe to the death event of the health component
         EnemyHealth.OnDeathEvent += OnDeath;
@@ -75,14 +77,20 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void TakeDamage(int damage, DamageType damageType)
     {
         EnemyHealth.TakeDamage(damage, damageType);
-        UpdateHealthBar();
+        UpdateStatusBars();
     }
 
-    private void UpdateHealthBar()
+    private void UpdateStatusBars()
     {
-        if (healthBarInstance != null)
+
+        if (statusBarInstance != null)
         {
-            healthBarInstance.UpdateHealth(EnemyHealth.Current, EnemyHealth.Max);
+            statusBarInstance.UpdateHealth(EnemyHealth.Current, EnemyHealth.Max);
+            statusBarInstance.UpdateArmor(EnemyHealth.TotalArmor, EnemyHealth.MaxArmor);
+        }
+        else
+        {
+            Debug.LogWarning("HealthBarInstance is NULL");
         }
     }
 

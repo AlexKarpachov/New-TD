@@ -11,6 +11,6 @@ public class SingleDamageProjectile : ProjectileBase
         if (enemyHealth == null) return;
 
         int damage = isCriticalHit ? Mathf.RoundToInt(config.damage * 1.5f) : config.damage;
-        enemyHealth.TakeDamage(damage, config.damageType);
+        enemyBase.TakeDamage(damage, config.damageType);
     }
 }

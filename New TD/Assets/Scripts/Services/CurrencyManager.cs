@@ -17,7 +17,7 @@ public class CurrencyManager : MonoBehaviour
     }
     private void Start()
     {
-        balanceText.text = "Money $ " + money.ToString();
+        balanceText.text = "$" + money.ToString();
     }
 
     public bool CanAfford(int cost)
@@ -30,13 +30,13 @@ public class CurrencyManager : MonoBehaviour
         if (CanAfford(amount))
         {
             money -= amount;
-            balanceText.text = ("Money $" + money);
+            balanceText.text = ("$" + money);
         }
     }
 
     public void EarnMoney(int amount)
     {
         money += amount;
-        balanceText.text = ("Money $" + money);
+        balanceText.text = ("$" + money);
     }
 }

@@ -15,4 +15,6 @@ public interface IEnemyHealth
     event Action OnDeathEvent;
 
     void TakeDamage(int damage, DamageType damageType);
+
+    void Reset();
 }

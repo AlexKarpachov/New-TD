@@ -17,6 +17,9 @@ public class WaveManager : MonoBehaviour, IWaveManager
     [SerializeField] float timeBetweenWaves = 5f;
     [SerializeField] int waveToActivateSecondSpawn = 5;
 
+    public int TotalWaves => waves.Count;
+    public int CurrentWave => currentWaveIndex + 1;
+
     int currentWaveIndex = 0;
     bool isSpawning = false;
 
@@ -72,13 +75,11 @@ public class WaveManager : MonoBehaviour, IWaveManager
         {
             Waypoints waypoints = useSecondSpawnPoint ? route2 : route1;
 
-            if (waypoints == null)
-            {
+            if (waypoints == null) return;
 
-                return;
-            }
-
-            enemyObj.GetComponent<EnemyBase>().Initialize(config, enemyObj.transform, waypoints.points);
+            var enemy = enemyObj.GetComponent<EnemyBase>();
+            enemy.Initialize(config, enemyObj.transform, waypoints.points);
+            enemy.ResetEnemy();
         }
     }
 

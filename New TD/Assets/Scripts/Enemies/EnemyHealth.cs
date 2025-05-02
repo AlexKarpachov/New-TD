@@ -67,4 +67,11 @@ public class EnemyHealth : IEnemyHealth
     {
         OnDeathEvent?.Invoke();
     }
+
+    public void Reset()
+    {
+        Current = Max;
+        _mechanicalResistance = _initialMechanical;
+        _magicalResistance = _initialMagical;
+    }
 }

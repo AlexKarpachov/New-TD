@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class GameSpeedToggle : MonoBehaviour
 {
-    [SerializeField] private Button fastButton;    // Button "x2"
-    [SerializeField] private Button normalButton;  // Button "x1"
-    [SerializeField] private Button pauseButton;   // Button "Pause"
-    [SerializeField] private Button playButton;    // Button "Play"
+    [SerializeField] private Button fastButton;
+    [SerializeField] private Button normalButton;
+    [SerializeField] private Button pauseButton;
+    [SerializeField] private Button playButton;
 
     private IGameManager gameManager;
 
@@ -25,68 +25,48 @@ public class GameSpeedToggle : MonoBehaviour
     private void SetNormalSpeedOnStart()
     {
         gameManager.SetNormalSpeed();
-        ShowFastButton(); // показати кнопку x2 на старті
-        ShowPauseButton(); // на старті також активна кнопка пауза
+        UIManager.Instance.ShowSpeedX2Button(true);
+        UIManager.Instance.ShowSpeedX1Button(false);
+        UIManager.Instance.ShowPauseButton(true);
+        UIManager.Instance.ShowPlayButton(false);
     }
 
     private void OnFastSpeed()
     {
         if (IsPaused()) ResumeFromPause();
         gameManager.SetFastSpeed();
-        ShowNormalButton();
+        UIManager.Instance.ShowSpeedX2Button(false);
+        UIManager.Instance.ShowSpeedX1Button(true);
     }
 
     private void OnNormalSpeed()
     {
         if (IsPaused()) ResumeFromPause();
         gameManager.SetNormalSpeed();
-        ShowFastButton();
+        UIManager.Instance.ShowSpeedX2Button(true);
+        UIManager.Instance.ShowSpeedX1Button(false);
     }
 
     private void OnPause()
     {
         gameManager.PauseGame();
-        ShowPlayButton();
+        UIManager.Instance.ShowPlayButton(true);
+        UIManager.Instance.ShowPauseButton(false);
     }
 
     private void OnResume()
     {
         gameManager.ResumeGame();
-        ShowPauseButton();
+        UIManager.Instance.ShowPauseButton(true);
+        UIManager.Instance.ShowPlayButton(false);
     }
 
-    private void ShowFastButton()
-    {
-        fastButton.gameObject.SetActive(true);
-        normalButton.gameObject.SetActive(false);
-    }
-
-    private void ShowNormalButton()
-    {
-        fastButton.gameObject.SetActive(false);
-        normalButton.gameObject.SetActive(true);
-    }
-
-    private void ShowPauseButton()
-    {
-        pauseButton.gameObject.SetActive(true);
-        playButton.gameObject.SetActive(false);
-    }
-
-    private void ShowPlayButton()
-    {
-        pauseButton.gameObject.SetActive(false);
-        playButton.gameObject.SetActive(true);
-    }
-
-    private bool IsPaused()
-    {
-        return Time.timeScale == 0f;
-    }
+    private bool IsPaused() => Time.timeScale == 0f;
 
     private void ResumeFromPause()
     {
         gameManager.ResumeGame();
-        ShowPauseButton();
+        UIManager.Instance.ShowPauseButton(true);
+        UIManager.Instance.ShowPlayButton(false);
     }
 }

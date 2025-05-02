@@ -112,6 +112,13 @@ public abstract class EnemyBase : MonoBehaviour
     // Called when the enemy dies. Handles object removal.
     public virtual void OnDeath()
     {
-        Destroy(gameObject);
+        CurrencyManager.Instance?.EarnMoney(Config.goldReward);
+        ObjectPool.Instance.ReturnObject(gameObject, Config.enemyName);
+    }
+
+    public void ResetEnemy()
+    {
+        EnemyHealth?.Reset();
+        UpdateStatusBars();
     }
 }

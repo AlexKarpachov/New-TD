@@ -15,21 +15,21 @@ public class GamePauseToggle : MonoBehaviour
         pauseButton.onClick.AddListener(OnPause);
         playButton.onClick.AddListener(OnPlay);
 
-        pauseButton.gameObject.SetActive(true);
-        playButton.gameObject.SetActive(false);
+        UIManager.Instance.ShowPauseButton(true);
+        UIManager.Instance.ShowPlayButton(false);
     }
 
     private void OnPause()
     {
         gameManager.PauseGame();
-        pauseButton.gameObject.SetActive(false);
-        playButton.gameObject.SetActive(true);
+        UIManager.Instance.ShowPauseButton(false);
+        UIManager.Instance.ShowPlayButton(true);
     }
 
     private void OnPlay()
     {
         gameManager.ResumeGame();
-        pauseButton.gameObject.SetActive(true);
-        playButton.gameObject.SetActive(false);
+        UIManager.Instance.ShowPauseButton(true);
+        UIManager.Instance.ShowPlayButton(false);
     }
 }

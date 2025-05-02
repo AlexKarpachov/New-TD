@@ -16,5 +16,5 @@ MonoBehaviour:
   enemies:
   - enemyPrefab: Spearman
     config: {fileID: 11400000, guid: 8f0c4c211c2fb0a4799a966cd15e0f13, type: 2}
-    count: 1
+    count: 5
     spawnFromSecondPoint: 0

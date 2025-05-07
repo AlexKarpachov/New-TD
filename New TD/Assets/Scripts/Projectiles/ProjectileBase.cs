@@ -10,6 +10,8 @@ public abstract class ProjectileBase : MonoBehaviour
     protected Transform target;
     protected bool isCriticalHit;
 
+    Vector3 hitTargetOffset = new Vector3(0, 1, 0);
+
     public virtual void Initialize(Transform target, bool canDealCritical, ProjectileConfig projectileConfig)
     {
         this.target = target;
@@ -28,7 +30,7 @@ public abstract class ProjectileBase : MonoBehaviour
         RotateTowardsTarget();
         MoveTowardsTarget();
 
-        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+        if (Vector3.Distance(transform.position, target.position + hitTargetOffset) < 0.1f)
         {
             OnHit(target);
             ObjectPool.Instance.ReturnObject(gameObject, config.projectileName);
@@ -37,7 +39,7 @@ public abstract class ProjectileBase : MonoBehaviour
 
     protected virtual void RotateTowardsTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (target.position + hitTargetOffset - transform.position).normalized;
         if (direction != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -47,7 +49,7 @@ public abstract class ProjectileBase : MonoBehaviour
 
     protected virtual void MoveTowardsTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, config.speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.position + hitTargetOffset, config.speed * Time.deltaTime);
     }
 
     protected abstract void OnHit(Transform enemy);

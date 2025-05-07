@@ -1,4 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
+using static WaveConfig;
 
 /// <summary>
 /// Applies area damage to all enemies within explosion radius.
@@ -27,11 +28,11 @@ public class ExplosiveProjectile : ProjectileBase
 
     private void ApplyDamageTo(Transform enemy)
     {
-        IEnemyHealth enemyHealth = enemy.GetComponent<EnemyBase>()?.EnemyHealth;
-        if (enemyHealth != null)
+        EnemyBase baseEnemy = enemy.GetComponent<EnemyBase>();
+        if (baseEnemy != null)
         {
             int damage = isCriticalHit ? Mathf.RoundToInt(config.damage * 1.5f) : config.damage;
-            enemyHealth.TakeDamage(damage, config.damageType);
+            baseEnemy.TakeDamage(damage, config.damageType); // ← через EnemyBase
         }
     }
 

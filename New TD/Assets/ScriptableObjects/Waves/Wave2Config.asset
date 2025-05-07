@@ -16,5 +16,5 @@ MonoBehaviour:
   enemies:
   - enemyPrefab: Swordman
     config: {fileID: 11400000, guid: a2d40781a2065d847827ea53b0bc54e9, type: 2}
-    count: 5
-    spawnFromSecondPoint: 1
+    count: 15
+    spawnFromSecondPoint: 0

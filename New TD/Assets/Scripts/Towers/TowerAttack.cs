@@ -5,9 +5,10 @@
 /// </summary>
 public class TowerAttack : ITowerAttack
 {
-    private TowerConfig config;
-    private float lastAttackTime = 0f;
-    private Transform towerTransform;
+    TowerConfig config;
+    Transform towerTransform;
+    Vector3 spawnOffset = new Vector3 (0, 2, 0);
+    float lastAttackTime = 0f;
 
     public TowerAttack(TowerConfig config, Transform towerTransform)
     {
@@ -29,7 +30,9 @@ public class TowerAttack : ITowerAttack
 
     private void SpawnProjectile(Transform target)
     {
-        GameObject projectile = ObjectPool.Instance.GetObject(config.projectilePrefab.name, towerTransform.position, Quaternion.identity);
+        Vector3 spawnPosition = towerTransform.position + spawnOffset;
+
+        GameObject projectile = ObjectPool.Instance.GetObject(config.projectilePrefab.name, spawnPosition, Quaternion.identity);
         if (projectile != null)
         {
             ProjectileBase projectileScript = projectile.GetComponent<ProjectileBase>();

@@ -32,6 +32,7 @@ public class TowerUpgradeSell : ITowerUpgrade, ITowerSell
 
         Object.Destroy(currentTower);
         Object.Instantiate(config.nextUpgrade.prefab, position, rotation);
+        GameManager.Instance.ResumeGame();
     }
 
     public void Sell(GameObject currentTower)

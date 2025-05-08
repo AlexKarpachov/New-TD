@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/UltimateChallenge.unity
     guid: 77bdcc3a8bfe2f340aa6ebbdb669c7ff
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/Level1.unity
     guid: f9cb4a9fb857f49439eb39ff3fea4863
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,

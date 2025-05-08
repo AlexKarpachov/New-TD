@@ -1,29 +1,32 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveManager : MonoBehaviour
+/// <summary>
+/// Manages enemy waves, controlling spawn points, intervals, and wave progression.
+/// </summary>
+public class WaveManager : MonoBehaviour, IWaveManager
 {
     public static WaveManager Instance;
 
-    [SerializeField] private List<WaveConfig> waves; // Налаштування хвиль
-    [SerializeField] private Transform spawnPoint1; // Точка спавну для Route1
-    [SerializeField] private Transform spawnPoint2; // Точка спавну для Route2
-    [SerializeField] private float timeBetweenWaves = 5f;
+    [SerializeField] List<WaveConfig> waves;
+    [SerializeField] Transform spawnPoint1;
+    [SerializeField] Transform spawnPoint2;
+    [SerializeField] Waypoints route1;
+    [SerializeField] Waypoints route2;
+    [SerializeField] float timeBetweenWaves = 5f;
+    [SerializeField] int waveToActivateSecondSpawn = 5;
 
-    private int currentWaveIndex = 0;
-    private bool isSpawning = false;
+    public int TotalWaves => waves.Count;
+    public int CurrentWave => currentWaveIndex + 1;
+
+    int currentWaveIndex = 0;
+    bool isSpawning = false;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     private void Start()
@@ -33,6 +36,8 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator SpawnWaves()
     {
+        yield return new WaitUntil(() => ObjectPool.Instance != null);
+
         while (currentWaveIndex < waves.Count)
         {
             isSpawning = true;
@@ -57,21 +62,38 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnEnemy(string enemyTag, EnemyConfig config, bool useSecondSpawnPoint)
     {
-        GameObject enemyObj = ObjectPoolManager.Instance.GetObject(enemyTag);
+        if (ObjectPool.Instance == null)
+        {
+            return;
+        }
+
+        useSecondSpawnPoint = currentWaveIndex + 1 >= waveToActivateSecondSpawn ? useSecondSpawnPoint : false;
+
+        GameObject enemyObj = ObjectPool.Instance.GetObject(enemyTag, useSecondSpawnPoint ? spawnPoint2.position : spawnPoint1.position, Quaternion.identity);
 
         if (enemyObj != null)
         {
-            Transform spawnPoint = useSecondSpawnPoint ? spawnPoint2 : spawnPoint1;
-            Waypoints waypoints = config.route; // 🔹 Отримуємо маршрут із `EnemyConfig`
+            Waypoints waypoints = useSecondSpawnPoint ? route2 : route1;
 
-            if (waypoints == null)
-            {
-                Debug.LogError("Маршрут для " + config.enemyName + " не встановлений у EnemyConfig!");
-                return;
-            }
+            if (waypoints == null) return;
 
-            enemyObj.transform.position = spawnPoint.position;
-            enemyObj.GetComponent<EnemyBase>().Initialize(config, enemyObj.transform, waypoints.points); 
+            var enemy = enemyObj.GetComponent<EnemyBase>();
+            enemy.Initialize(config, enemyObj.transform, waypoints.points);
+            enemy.ResetEnemy();
         }
+    }
+
+    public void StartNextWave()
+    {
+        if (!isSpawning && currentWaveIndex < waves.Count)
+        {
+            StartCoroutine(SpawnWave(waves[currentWaveIndex]));
+            currentWaveIndex++;
+        }
+    }
+
+    public int GetCurrentWaveIndex()
+    {
+        return currentWaveIndex;
     }
 }

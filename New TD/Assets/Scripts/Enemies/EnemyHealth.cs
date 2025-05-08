@@ -1,40 +1,77 @@
-using System;
+﻿using System;
 using UnityEngine;
 
+/// <summary>
+/// Manages enemy health, armor, and death logic.
+/// Tracks mechanical and magical resistances separately,
+/// and allows UI to query armor state for display.
+/// </summary>
 public class EnemyHealth : IEnemyHealth
 {
-    private int _health;
-    private int _armor;
-
     public event Action OnDeathEvent;
 
-    public EnemyHealth(int health, int armor)
+    public int Current { get; private set; }
+    public int Max { get; private set; }
+
+    private int _mechanicalResistance;
+    private int _magicalResistance;
+
+    private readonly int _initialMechanical;
+    private readonly int _initialMagical;
+
+    public int TotalArmor => _mechanicalResistance + _magicalResistance;
+    public int MaxArmor => _initialMechanical + _initialMagical;
+
+    public EnemyHealth(int health, int mechanicalResistance, int magicalResistance)
     {
-        _health = health;
-        _armor = armor;
+        Max = health;
+        Current = health;
+
+        _mechanicalResistance = mechanicalResistance;
+        _magicalResistance = magicalResistance;
+
+        _initialMechanical = mechanicalResistance;
+        _initialMagical = magicalResistance;
     }
 
     public void TakeDamage(int damage, DamageType damageType)
     {
-        int adjustedDamage = Mathf.Max(0, damage - _armor);
-        _health -= adjustedDamage;
-        Debug.Log($"Enemy took {adjustedDamage} damage. Remaining health: {_health}");
+        int remainingDamage = damage;
 
-        if (_health <= 0)
+        if (damageType == DamageType.Mechanical && _mechanicalResistance > 0)
+        {
+            int reduction = Mathf.Min(_mechanicalResistance, damage);
+            _mechanicalResistance -= reduction;
+            remainingDamage -= reduction;
+        }
+        else if (damageType == DamageType.Magical && _magicalResistance > 0)
+        {
+            int reduction = Mathf.Min(_magicalResistance, damage);
+            _magicalResistance -= reduction;
+            remainingDamage -= reduction;
+        }
+
+        if (remainingDamage > 0)
+        {
+            int oldHealth = Current;
+            Current -= remainingDamage;
+        }
+
+        if (Current <= 0)
         {
             OnDeath();
         }
     }
 
-    public int GetHealth()
+    private void OnDeath()
     {
-        return _health;
+        OnDeathEvent?.Invoke();
     }
 
-    public void OnDeath()
+    public void Reset()
     {
-        Debug.Log("Enemy has died!");
-        OnDeathEvent?.Invoke();
-        // Додаткові дії при смерті ворога (наприклад, видалення об'єкта)
+        Current = Max;
+        _mechanicalResistance = _initialMechanical;
+        _magicalResistance = _initialMagical;
     }
 }

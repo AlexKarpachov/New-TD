@@ -3,7 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Route1
+  - Route2
+  - Tower1
+  - Tower2
+  - Arrow
+  - Spearman
+  - Swordman
+  - MageSphere1
+  - MageSpere2
+  - MageSpere3
+  - Enemy2
+  - ArtRocket1
+  - ArtRocket2
+  - ArtRocket3
+  - MageSpereMultiple1
+  - MageSpereMultiple2
+  - Castle
   layers:
   - Default
   - TransparentFX
@@ -40,4 +57,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 69326059
     locked: 0

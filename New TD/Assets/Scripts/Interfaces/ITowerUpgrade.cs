@@ -1,4 +1,6 @@
+using UnityEngine;
+
 public interface ITowerUpgrade
 {
-    void Upgrade(); // — покращує вежу.
+    void Upgrade(GameObject currentTower);
 }

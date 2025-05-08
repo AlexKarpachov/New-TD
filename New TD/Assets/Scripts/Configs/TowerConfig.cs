@@ -4,12 +4,13 @@ using UnityEngine;
 public class TowerConfig : ScriptableObject
 {
     public string towerName;
-    public int purchaseCost; // Ціна покупки.
-    public int sellValue; // Вартість продажу.
-    public int upgradeCost; // Вартість покращення.
-    public float range; // Радіус дії.
-    public float fireRate; // Частота стрільби.
-    public GameObject projectilePrefab; // Тип снаряда, яким стріляє вежа.
-    public bool canDealCriticalDamage; // Чи має вежа критичний урон.
-    public GameObject prefab; // Префаб вежі.
+    public int purchaseCost;
+    public int sellValue; 
+    public int upgradeCost; 
+    public float range; // Shoot radius
+    public float fireRate; // Shoot frequency
+    public GameObject projectilePrefab; // Projectile type
+    public bool canDealCriticalDamage; // does the tower can make crit damage or not
+    public GameObject prefab; // tower prefab
+    public TowerConfig nextUpgrade; // updated tower config. If null - the tower has its max upgrade (or doesn't have at all)
 }

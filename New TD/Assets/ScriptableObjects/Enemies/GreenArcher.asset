@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 917f18d4ffd986d4d8c5d37f79b1c54e, type: 3}
-  m_Name: Wave1Config
+  m_Script: {fileID: 11500000, guid: 0f6455fbf103f774690ad78020f353b1, type: 3}
+  m_Name: GreenArcher
   m_EditorClassIdentifier: 
-  spawnDelay: 1
-  enemies:
-  - enemyPrefab: GreenArcher
-    config: {fileID: 11400000, guid: 440bd0c6ba4836d4f999ff561c770590, type: 2}
-    count: 2
-    spawnFromSecondPoint: 0
+  enemyName: GreenArcher
+  health: 100
+  mechanicalResistance: 50
+  magicalResistance: 0
+  speed: 3
+  goldReward: 5
+  scoreReward: 1
+  livesDamage: 10
+  route: {fileID: 0}

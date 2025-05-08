@@ -1425,6 +1425,32 @@ MonoBehaviour:
     prefab: {fileID: 1189778183814455825, guid: 1b4a08c4b1d7bcf42851d82b4acdc87e,
       type: 3}
     poolSize: 10
+  - prefabTag: GreenArcher
+    prefab: {fileID: 6374381191778514091, guid: fc1beedac94716849a5a95f463207877,
+      type: 3}
+    poolSize: 10
+  - prefabTag: GreenMage
+    prefab: {fileID: 2723547840747610006, guid: 2e74631b38affff44864d7bba4738a57,
+      type: 3}
+    poolSize: 10
+  - prefabTag: GreenSpearman
+    prefab: {fileID: 837051661444457631, guid: 2af9ad3eb8873e04d9f4237670452526, type: 3}
+    poolSize: 10
+  - prefabTag: GreenSwordman
+    prefab: {fileID: 1911898015976650864, guid: d1807b9f92eeafc45a43a049c63e88d5,
+      type: 3}
+    poolSize: 10
+  - prefabTag: OrangeArcher
+    prefab: {fileID: 5842697209975967083, guid: 9f0059f11383247488828383de3b4040,
+      type: 3}
+    poolSize: 10
+  - prefabTag: OrangeMage
+    prefab: {fileID: 292111319726247466, guid: eab6635b4b2da6845a7dce86d0dc67fa, type: 3}
+    poolSize: 10
+  - prefabTag: OrangeSwordman
+    prefab: {fileID: 4887167858595981889, guid: c760eebdf9ca3634d9725fdd3856bd72,
+      type: 3}
+    poolSize: 10
 --- !u!4 &281341949
 Transform:
   m_ObjectHideFlags: 0

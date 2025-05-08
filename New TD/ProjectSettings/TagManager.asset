@@ -6,21 +6,25 @@ TagManager:
   tags:
   - Route1
   - Route2
-  - Tower1
-  - Tower2
   - Arrow
   - Spearman
   - Swordman
   - MageSphere1
   - MageSpere2
   - MageSpere3
-  - Enemy2
   - ArtRocket1
   - ArtRocket2
   - ArtRocket3
   - MageSpereMultiple1
   - MageSpereMultiple2
   - Castle
+  - GreenArcher
+  - GreenMage
+  - GreenSpearman
+  - GreenSwordman
+  - OrangeArcher
+  - OrangeMage
+  - OrangeSwordman
   layers:
   - Default
   - TransparentFX

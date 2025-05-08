@@ -90,25 +90,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3445390418919524647}
     m_Modifications:
-    - target: {fileID: 2722216225493860507, guid: d2433df64046d814489e67ab794d66b5,
-        type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4923504738326410534, guid: d2433df64046d814489e67ab794d66b5,
         type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6486560913393374721, guid: d2433df64046d814489e67ab794d66b5,
-        type: 3}
-      propertyPath: offset.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6486560913393374721, guid: d2433df64046d814489e67ab794d66b5,
-        type: 3}
-      propertyPath: offset.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6682234708284102720, guid: d2433df64046d814489e67ab794d66b5,
         type: 3}

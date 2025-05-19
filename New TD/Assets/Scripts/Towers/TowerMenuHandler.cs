@@ -21,5 +21,4 @@ public class TowerMenuHandler : MonoBehaviour
             GameManager.Instance.ResumeGame();
         }
     }
-
 }

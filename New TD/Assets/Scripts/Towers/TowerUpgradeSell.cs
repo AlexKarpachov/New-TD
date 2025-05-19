@@ -39,5 +39,6 @@ public class TowerUpgradeSell : ITowerUpgrade, ITowerSell
     {
         CurrencyManager.Instance.EarnMoney(config.sellValue);
         Object.Destroy(currentTower);
+        GameManager.Instance.ResumeGame();
     }
 }

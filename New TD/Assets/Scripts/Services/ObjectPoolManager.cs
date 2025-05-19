@@ -1,4 +1,7 @@
-using System.Collections.Generic;
+/*
+ * Looks like I don't need it beacuse I have ObjectPool class. May be deleted after tests
+ * 
+ * using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
@@ -78,4 +81,4 @@ public class ObjectPoolManager : MonoBehaviour
         obj.SetActive(false);
         poolDictionary[tag].Enqueue(obj);
     }
-}
+}*/

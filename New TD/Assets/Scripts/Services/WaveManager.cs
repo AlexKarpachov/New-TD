@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Manages enemy waves, controlling spawn points, intervals, and wave progression.
-/// </summary>
 public class WaveManager : MonoBehaviour, IWaveManager
 {
     public static WaveManager Instance;
@@ -15,18 +12,19 @@ public class WaveManager : MonoBehaviour, IWaveManager
     [SerializeField] Waypoints route1;
     [SerializeField] Waypoints route2;
     [SerializeField] float timeBetweenWaves = 5f;
-    [SerializeField] int waveToActivateSecondSpawn = 5;
 
     public int TotalWaves => waves.Count;
     public int CurrentWave => currentWaveIndex + 1;
 
-    int currentWaveIndex = 0;
-    bool isSpawning = false;
+    private int currentWaveIndex = 0;
+    private bool isSpawning = false;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
     private void Start()
@@ -60,25 +58,23 @@ public class WaveManager : MonoBehaviour, IWaveManager
         }
     }
 
-    private void SpawnEnemy(string enemyTag, EnemyConfig config, bool useSecondSpawnPoint)
+    private void SpawnEnemy(string enemyTag, EnemyConfig config, bool spawnFromSecondPoint)
     {
         if (ObjectPool.Instance == null)
-        {
             return;
-        }
 
-        useSecondSpawnPoint = currentWaveIndex + 1 >= waveToActivateSecondSpawn ? useSecondSpawnPoint : false;
+        Transform spawnPoint = spawnFromSecondPoint ? spawnPoint2 : spawnPoint1;
+        Waypoints route = spawnFromSecondPoint ? route2 : route1;
 
-        GameObject enemyObj = ObjectPool.Instance.GetObject(enemyTag, useSecondSpawnPoint ? spawnPoint2.position : spawnPoint1.position, Quaternion.identity);
+        if (route == null)
+            return;
+
+        GameObject enemyObj = ObjectPool.Instance.GetObject(enemyTag, spawnPoint.position, Quaternion.identity);
 
         if (enemyObj != null)
         {
-            Waypoints waypoints = useSecondSpawnPoint ? route2 : route1;
-
-            if (waypoints == null) return;
-
             var enemy = enemyObj.GetComponent<EnemyBase>();
-            enemy.Initialize(config, enemyObj.transform, waypoints.points);
+            enemy.Initialize(config, enemyObj.transform, route.points);
             enemy.ResetEnemy();
         }
     }

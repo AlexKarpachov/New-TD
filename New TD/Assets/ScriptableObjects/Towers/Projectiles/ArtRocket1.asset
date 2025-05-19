@@ -15,7 +15,7 @@ MonoBehaviour:
   projectileName: ArtRocket1
   speed: 5
   damage: 50
-  isAreaDamage: 1
+  isAreaDamage: 0
   explosionRadius: 3
   damageType: 0
   visualEffectPrefab: {fileID: 0}

@@ -7,6 +7,7 @@ public class GameSpeedToggle : MonoBehaviour
     [SerializeField] private Button normalButton;
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button playButton;
+    [SerializeField] private GameObject towerList;
 
     private IGameManager gameManager;
 
@@ -25,6 +26,7 @@ public class GameSpeedToggle : MonoBehaviour
     private void SetNormalSpeedOnStart()
     {
         gameManager.SetNormalSpeed();
+        towerList.SetActive(false);
         UIManager.Instance.ShowSpeedX2Button(true);
         UIManager.Instance.ShowSpeedX1Button(false);
         UIManager.Instance.ShowPauseButton(true);
@@ -35,6 +37,7 @@ public class GameSpeedToggle : MonoBehaviour
     {
         if (IsPaused()) ResumeFromPause();
         gameManager.SetFastSpeed();
+        towerList.SetActive(false);
         UIManager.Instance.ShowSpeedX2Button(false);
         UIManager.Instance.ShowSpeedX1Button(true);
     }
@@ -43,6 +46,7 @@ public class GameSpeedToggle : MonoBehaviour
     {
         if (IsPaused()) ResumeFromPause();
         gameManager.SetNormalSpeed();
+        towerList.SetActive(false);
         UIManager.Instance.ShowSpeedX2Button(true);
         UIManager.Instance.ShowSpeedX1Button(false);
     }
@@ -50,13 +54,14 @@ public class GameSpeedToggle : MonoBehaviour
     private void OnPause()
     {
         gameManager.PauseGame();
-        UIManager.Instance.ShowPlayButton(true);
         UIManager.Instance.ShowPauseButton(false);
+        UIManager.Instance.ShowPlayButton(true);
     }
 
     private void OnResume()
     {
         gameManager.ResumeGame();
+        towerList.SetActive(false);
         UIManager.Instance.ShowPauseButton(true);
         UIManager.Instance.ShowPlayButton(false);
     }
@@ -66,6 +71,7 @@ public class GameSpeedToggle : MonoBehaviour
     private void ResumeFromPause()
     {
         gameManager.ResumeGame();
+        towerList.SetActive(false);
         UIManager.Instance.ShowPauseButton(true);
         UIManager.Instance.ShowPlayButton(false);
     }

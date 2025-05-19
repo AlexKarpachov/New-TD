@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour, IGameManager
     public void PauseGame() => Time.timeScale = 0f;
     public void ResumeGame() => Time.timeScale = 1f;
     public void SetNormalSpeed() => Time.timeScale = 1f;
-    public void SetFastSpeed() => Time.timeScale = 2f;
+    public void SetFastSpeed() => Time.timeScale = 5f;
 
     public void SaveProgress()
     {

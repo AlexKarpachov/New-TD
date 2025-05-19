@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917f18d4ffd986d4d8c5d37f79b1c54e, type: 3}
   m_Name: Wave1Config
   m_EditorClassIdentifier: 
-  spawnDelay: 1
+  spawnDelay: 5
   enemies:
+  - enemyPrefab: GreenArcher
+    config: {fileID: 11400000, guid: 440bd0c6ba4836d4f999ff561c770590, type: 2}
+    count: 2
+    spawnFromSecondPoint: 0
   - enemyPrefab: GreenArcher
     config: {fileID: 11400000, guid: 440bd0c6ba4836d4f999ff561c770590, type: 2}
     count: 2

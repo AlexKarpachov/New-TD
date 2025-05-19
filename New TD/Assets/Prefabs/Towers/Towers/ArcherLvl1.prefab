@@ -189,6 +189,11 @@ PrefabInstance:
       propertyPath: menuUI
       value: 
       objectReference: {fileID: 3587140216543329935}
+    - target: {fileID: 3285808805844675004, guid: e951d696d7439bd428a80775d17aa06e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3469365233375817600, guid: e951d696d7439bd428a80775d17aa06e,
         type: 3}
       propertyPath: m_AnchorMax.y

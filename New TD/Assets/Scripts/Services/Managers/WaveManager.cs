@@ -18,6 +18,8 @@ public class WaveManager : MonoBehaviour, IWaveManager
 
     private int currentWaveIndex = 0;
     private bool isSpawning = false;
+    private bool allWavesCompleted = false;
+    public bool AllWavesCompleted => allWavesCompleted;
 
     private void Awake()
     {
@@ -41,9 +43,14 @@ public class WaveManager : MonoBehaviour, IWaveManager
             isSpawning = true;
             yield return StartCoroutine(SpawnWave(waves[currentWaveIndex]));
             isSpawning = false;
-            yield return new WaitForSeconds(timeBetweenWaves);
+
             currentWaveIndex++;
+
+            if (currentWaveIndex < waves.Count)
+                yield return new WaitForSeconds(timeBetweenWaves);
         }
+
+        allWavesCompleted = true;
     }
 
     private IEnumerator SpawnWave(WaveConfig wave)
@@ -60,14 +67,12 @@ public class WaveManager : MonoBehaviour, IWaveManager
 
     private void SpawnEnemy(string enemyTag, EnemyConfig config, bool spawnFromSecondPoint)
     {
-        if (ObjectPool.Instance == null)
-            return;
+        if (ObjectPool.Instance == null) return;
 
         Transform spawnPoint = spawnFromSecondPoint ? spawnPoint2 : spawnPoint1;
         Waypoints route = spawnFromSecondPoint ? route2 : route1;
 
-        if (route == null)
-            return;
+        if (route == null) return;
 
         GameObject enemyObj = ObjectPool.Instance.GetObject(enemyTag, spawnPoint.position, Quaternion.identity);
 

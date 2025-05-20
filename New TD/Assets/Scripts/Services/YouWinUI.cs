@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverUI : MonoBehaviour
+public class YouWinUI : MonoBehaviour
 {
     private SceneFader sceneFader;
     private bool isTransitioning = false;
@@ -15,7 +15,7 @@ public class GameOverUI : MonoBehaviour
         }
     }
 
-    public void RetryLevel()
+    public void RetryGame()
     {
         if (isTransitioning || sceneFader == null) return;
 

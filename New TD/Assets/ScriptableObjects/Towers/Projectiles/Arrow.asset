@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Arrow
   m_EditorClassIdentifier: 
   projectileName: Arrow
-  speed: 10
-  damage: 20
+  speed: 19
+  damage: 19
   isAreaDamage: 0
   explosionRadius: 0
   damageType: 0

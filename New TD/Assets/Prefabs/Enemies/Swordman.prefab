@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5026843353122134885}
-  - component: {fileID: 8393047970115130357}
   - component: {fileID: 5850500864073433812}
+  - component: {fileID: 8393047970115130357}
   - component: {fileID: 8732090632295640638}
   m_Layer: 0
   m_Name: Swordman
@@ -36,19 +36,6 @@ Transform:
   - {fileID: 4743756091896843958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8393047970115130357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3703770441462525127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 143f7633d0a22ca439ab97938ecf7f2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Config: {fileID: 11400000, guid: a2d40781a2065d847827ea53b0bc54e9, type: 2}
 --- !u!65 &5850500864073433812
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70,6 +57,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.3, z: 1}
   m_Center: {x: 0, y: 1.15, z: 0}
+--- !u!114 &8393047970115130357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3703770441462525127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143f7633d0a22ca439ab97938ecf7f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Config: {fileID: 11400000, guid: a2d40781a2065d847827ea53b0bc54e9, type: 2}
 --- !u!114 &8732090632295640638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,11 +173,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6486560913393374721, guid: d2433df64046d814489e67ab794d66b5,
-        type: 3}
-      propertyPath: offset.y
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6682234708284102720, guid: d2433df64046d814489e67ab794d66b5,
         type: 3}

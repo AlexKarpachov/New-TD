@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿/*
+ * This may be deleted. Replaced with GameSpeedToggle
+ * 
+ * using UnityEngine;
 using UnityEngine.UI;
 
 public class GamePauseToggle : MonoBehaviour
 {
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button playButton;
+    [SerializeField] private GameObject towerList;
 
     private IGameManager gameManager;
 
@@ -28,8 +32,9 @@ public class GamePauseToggle : MonoBehaviour
 
     private void OnPlay()
     {
+        towerList.SetActive(false);
         gameManager.ResumeGame();
         UIManager.Instance.ShowPauseButton(true);
         UIManager.Instance.ShowPlayButton(false);
     }
-}
+}*/

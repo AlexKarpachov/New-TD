@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
+    [SerializeField] GameObject TowerList;
+
     public static BuildManager Instance;
 
     private TowerConfig towerToBuild;
@@ -20,6 +22,7 @@ public class BuildManager : MonoBehaviour
     {
         towerToBuild = towerConfig;
         GroundManager.Instance.ShowAllGrounds();
+        TowerList.SetActive(false);
     }
 
     public TowerConfig GetSelectedTower()

@@ -11,8 +11,6 @@ public class EnemyAttack : MonoBehaviour, IEnemyAttack
     public void Initialize(EnemyConfig config, Transform enemyTransform)
     {
         this.config = config;
-        // this.enemyTransform = enemyTransform;
-        //  targetCastle = GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +22,6 @@ public class EnemyAttack : MonoBehaviour, IEnemyAttack
                 targetCastle = other.GetComponent<CastleHealth>();
             }
 
-            // Зупинити рух одразу при зіткненні
             GetComponent<EnemyBase>()?.EnemyMovement?.Stop();
         }
     }

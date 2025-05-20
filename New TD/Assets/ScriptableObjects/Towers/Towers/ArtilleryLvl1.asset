@@ -16,8 +16,8 @@ MonoBehaviour:
   purchaseCost: 5
   sellValue: 25
   upgradeCost: 5
-  range: 3
-  fireRate: 0.5
+  range: 6
+  fireRate: 1
   projectilePrefab: {fileID: 7758518104777258918, guid: 099212e00dfc3e842baaf5e521b9409d,
     type: 3}
   canDealCriticalDamage: 0

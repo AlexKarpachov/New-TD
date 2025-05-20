@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWaveConfig", menuName = "Configs/WaveConfig")]
 public class WaveConfig : ScriptableObject
 {
-    public float spawnDelay = 1f; // Delay between spawns
+    public float spawnDelay = 1f; // Delay between enemy spawns
 
     [System.Serializable]
     public class EnemyWave

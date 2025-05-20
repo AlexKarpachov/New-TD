@@ -3,16 +3,34 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
+    private SceneFader sceneFader;
+    private bool isTransitioning = false;
+
+    private void Awake()
+    {
+        sceneFader = FindObjectOfType<SceneFader>();
+        if (sceneFader == null)
+        {
+            Debug.LogError("SceneFader not found in the scene!");
+        }
+    }
+
     public void RetryLevel()
     {
+        if (isTransitioning || sceneFader == null) return;
+
+        isTransitioning = true;
         GameManager.Instance.ResumeGame();
-        FindObjectOfType<SceneFader>().FadeTo(SceneManager.GetActiveScene().name);
+        sceneFader.FadeTo("Level1");
     }
 
     public void LoadMainMenu()
     {
+        if (isTransitioning || sceneFader == null) return;
+
+        isTransitioning = true;
         GameManager.Instance.ResumeGame();
-        FindObjectOfType<SceneFader>().FadeTo("MainMenu"); 
+        sceneFader.FadeTo("MainMenu");
     }
 
     public void QuitGame()

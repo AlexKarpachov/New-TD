@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileName: Arrow
   speed: 10
-  damage: 20
+  damage: 10
   isAreaDamage: 0
   explosionRadius: 0
   damageType: 0

@@ -21,7 +21,7 @@ public abstract class ProjectileBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (target == null)
+        if (target == null || !target.gameObject.activeInHierarchy)
         {
             ObjectPool.Instance.ReturnObject(gameObject, config.projectileName);
             return;

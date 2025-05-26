@@ -29,10 +29,12 @@ public class ExplosiveProjectile : ProjectileBase
     private void ApplyDamageTo(Transform enemy)
     {
         EnemyBase baseEnemy = enemy.GetComponent<EnemyBase>();
-        if (baseEnemy != null)
+        if (baseEnemy != null && baseEnemy.EnemyHealth != null)
         {
+            if (baseEnemy.EnemyHealth.Current <= 0) return;
+
             int damage = isCriticalHit ? Mathf.RoundToInt(config.damage * 1.5f) : config.damage;
-            baseEnemy.TakeDamage(damage, config.damageType); // ← через EnemyBase
+            baseEnemy.TakeDamage(damage, config.damageType);
         }
     }
 

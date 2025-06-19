@@ -201,6 +201,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Upgrade
       objectReference: {fileID: 0}
+    - target: {fileID: 6689891681415005657, guid: e951d696d7439bd428a80775d17aa06e,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7570764393421065882, guid: e951d696d7439bd428a80775d17aa06e,
         type: 3}
       propertyPath: m_Pivot.x

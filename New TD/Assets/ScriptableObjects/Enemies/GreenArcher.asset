@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GreenArcher
   m_EditorClassIdentifier: 
   enemyName: GreenArcher
-  health: 1
-  mechanicalResistance: 50
+  health: 10
+  mechanicalResistance: 0
   magicalResistance: 0
   speed: 3
   goldReward: 1
